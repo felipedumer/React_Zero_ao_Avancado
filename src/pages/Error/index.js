@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 
-class Header extends Component {
+class Error extends Component {
 
     render() {
         return (
             <div>
-                Header projeto<br/>
-                <Link to={"/"}> Ir para home</Link>
-                <hr/>
+                <h2>Error</h2><br/>
+
+                <Link to={"/"}>Ir para home</Link>
             </div>
         );
     }
 }
 
-export default Header;
+export default Error;
