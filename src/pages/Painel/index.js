@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Home() {
+function Painel() {
     return (
         <div>
-            <h1>Page home</h1>
+            Bemvindo, logado!
         </div>
     );
 }
 
-export default Home;
+export default Painel;
