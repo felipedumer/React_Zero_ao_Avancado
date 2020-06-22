@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
+import './header.css'
 import {Link} from "react-router-dom";
 
 class Header extends Component {
 
     render() {
         return (
-            <div>
-                Header projeto<br/>
-                <Link to={"/"}> Ir para home</Link>
-                <hr/>
+            <div className={"header"}>
+                <Link to={"/"}>Filmaria</Link>
             </div>
         );
     }
