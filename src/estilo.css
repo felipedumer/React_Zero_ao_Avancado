@@ -1,39 +1,68 @@
 .container {
     display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
-.img {
-    width: 300px;
-    height: 300px;
-    padding-top: 50px;
-}
-
-.timer {
-    font-size: 50px;
-    margin-top: -170px;
-}
-
-.areaBtn {
-    margin-top: 120px;
+header {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    width: 100%;
+    height: 70px;
+    background-color: #4c89e3;
+    color: #fff;
+}
+
+header strong:hover {
+    color: #DDD;
+    cursor: pointer;
+    transition: all 0.8s;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 700px;
+    background-color: #ffffff;
+    border-width: 1px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.titulo {
+    font-size: 25px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    color: #000;
+}
+
+.subtitulo {
+    margin: 5px;
 }
 
 .botao {
-    width: 150px;
-    background-color: aliceblue;
-    font-size: 20px;
-    text-align: center;
+    height: 40px;
+    background: none;
     border-radius: 5px;
-    margin: 15px;
-    cursor: pointer;
+    border: 2px solid #4c89e3;
+    color: #4c89e3;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    margin: 10px;
 }
 
-.botao:hover{
-    opacity: 0.50;
-    color: black;
-    transition: all 0.50s;
+.botao:hover {
+    background: #4c89e3;
+    color: #FFF;
 }
