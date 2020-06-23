@@ -11,25 +11,28 @@ export default class App extends Component {
             senha: ''
         };
 
-        this.cadastrar = this.cadastrar.bind(this);
+        this.logar = this.logar.bind(this);
+        // deslogar
+        //firebase.auth().signOut();
+
+        // verificar se houve alteração no stats
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                alert('usuario logado com sucesso)');
+            }
+        });
     }
 
-    cadastrar(e) {
+    logar(e) {
 
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha)
-            .then(() => {
-                alert('Cdastrado com sucesso');
-            })
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.senha)
             .catch((err) => {
-                if(err.code === 'auth/invalid-email') {
-                    alert('Email invalido')
-                } else {
-                if(err.code === 'auth/weak-password') {
-                    alert('Senha fraca')
+                if(err.code === 'auth/wrong-password') {
+                    alert('Senha incorreta')
                 }
                 else {
                     alert('Codigo' + err.code);
-                }}
+                }
             })
         e.preventDefault()
     }
@@ -37,14 +40,15 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.cadastrar}>
+                <h1>Entrar</h1>
+                <form onSubmit={this.logar}>
                     <lavel>Email:</lavel><br/>
                     <input type={"text"} value={this.state.email}
                            onChange={(e) => this.setState({email: e.target.value})}/>
                     <br/><label>Senha:</label><br/>
                     <input type={"text"} value={this.state.senha}
                            onChange={(e) => this.setState({senha: e.target.value})}/>
-                    <br/><button type={"submit"}>Cadastrar</button>
+                    <br/><button type={"submit"}>Entrar</button>
                 </form>
             </div>
         );
