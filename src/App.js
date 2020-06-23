@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import firebase from 'firebase';
+import firebase from "./fireConnection";
 
 export default class App extends Component {
 
@@ -7,56 +7,45 @@ export default class App extends Component {
         super(props);
 
         this.state = {
-            lista: []
+            email: '',
+            senha: ''
         };
 
-        let firebaseConfig = {
-            apiKey: "AIzaSyC1kaZOBjaO4wbCsD3p5lXE2eecREwX-eI",
-            authDomain: "iniciandofirebase-12eb9.firebaseapp.com",
-            databaseURL: "https://iniciandofirebase-12eb9.firebaseio.com",
-            projectId: "iniciandofirebase-12eb9",
-            storageBucket: "iniciandofirebase-12eb9.appspot.com",
-            messagingSenderId: "23435037090",
-            appId: "1:23435037090:web:60794c791d5f52a7fdcafb",
-            measurementId: "G-K182T3L4LC"
-        };
-        // Initialize Firebase
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
+        this.cadastrar = this.cadastrar.bind(this);
+    }
 
-        firebase.database().ref('usuarios').on('value', (snapshot) => {
-            let state = this.state;
-            state.lista = [];
+    cadastrar(e) {
 
-            snapshot.forEach((childItem) => {
-                state.lista.push({
-                    key: childItem.key,
-                    nome: childItem.val().nome,
-                    idade: childItem.val().idade
-                })
-            });
-
-            this.setState(state);
-        });
-
-
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.senha)
+            .then(() => {
+                alert('Cdastrado com sucesso');
+            })
+            .catch((err) => {
+                if(err.code === 'auth/invalid-email') {
+                    alert('Email invalido')
+                } else {
+                if(err.code === 'auth/weak-password') {
+                    alert('Senha fraca')
+                }
+                else {
+                    alert('Codigo' + err.code);
+                }}
+            })
+        e.preventDefault()
     }
 
     render() {
-        const {token, nome, idade} = this.state;
-
         return (
             <div>
-                {this.state.lista.map((item) => {
-                    return(
-                        <div>
-                            <h3>ID: {item.key}</h3>
-                            <h1>Olá {item.nome}</h1>
-                            <h2>Idade: {item.idade}</h2>
-                        </div>
-                    )
-                })}
+                <form onSubmit={this.cadastrar}>
+                    <lavel>Email:</lavel><br/>
+                    <input type={"text"} value={this.state.email}
+                           onChange={(e) => this.setState({email: e.target.value})}/>
+                    <br/><label>Senha:</label><br/>
+                    <input type={"text"} value={this.state.senha}
+                           onChange={(e) => this.setState({senha: e.target.value})}/>
+                    <br/><button type={"submit"}>Cadastrar</button>
+                </form>
             </div>
         );
     }
