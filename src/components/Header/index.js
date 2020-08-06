@@ -9,7 +9,7 @@ export default function Header(){
             <Link to={"/"}>
                 <img className={"logo"} src={logo} alt={"Logo"}/>
             </Link>
-            <Link className={"reservas"} to={"/reservas"}>
+            <Link className={"reserva"} to={"/reservas"}>
                 <div>
                     <strong>Minhas reservas</strong>
                     <span>0 Reservas</span>
